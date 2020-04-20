@@ -5,6 +5,16 @@
 #include <vector>
 #include <fstream>
 
+namespace Eigen {
+    template <typename _Scalar>
+    using MatrixXC = Eigen::Matrix<_Scalar, Eigen::Dynamic, Eigen::Dynamic, Eigen::ColMajor>;
+
+    template <typename _Scalar>
+    using MatrixXR = Eigen::Matrix<_Scalar, Eigen::Dynamic, Eigen::Dynamic, Eigen::RowMajor>;
+
+    //template <typename _Scalar>
+   // using VectorX = Eigen::Matrix<_Scalar, Eigen::Dynamic, Eigen::Dynamic>;
+}
 
 namespace myUtils {
     // based on user357269's answer at https://stackoverflow.com/questions/34247057/how-to-read-csv-file-and-assign-to-eigen-matrix/
@@ -63,7 +73,7 @@ namespace myUtils {
     // based on Robert Dodier's answer at https://stackoverflow.com/questions/24518989/how-to-perform-1-dimensional-valid-convolution
     template<typename T>
     inline Eigen::Vector<T, Eigen::Dynamic> VectorConvolutionValid
-    (const Eigen::Vector<T, Eigen::Dynamic>& f, const Eigen::Vector<T, Eigen::Dynamic>& g)
+        (const Eigen::Vector<T, Eigen::Dynamic>& f, const Eigen::Vector<T, Eigen::Dynamic>& g)
     {
         //static_assert(! (std::is_same<T, float> || std::is_same<T, double> ), "convolution is only defined for floating-point numbers")
         const Eigen::Index nf = f.rows();
